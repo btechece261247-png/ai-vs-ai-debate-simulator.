@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An educational AI-versus-AI debate simulator using fictional market scenarios.">
+  <title>Signal Room — AI Debate Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">S</span><span>SIGNAL ROOM<small>EDUCATIONAL SIMULATOR</small></span></a>
+    <div class="top-status"><span class="pulse"></span> SIMULATION MODE <span class="status-divider">|</span> NO LIVE DATA</div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">MULTI-AGENT REASONING LAB</p>
+        <h1>Two perspectives.<br><span>One clear debate.</span></h1>
+        <p class="subhead">Explore how two simulated analysts can interpret the same fictional market scenario differently — then let an impartial judge evaluate their reasoning.</p>
+      </div>
+      <div class="intro-badge"><span>03</span><small>AI ROLES<br>IN THE ROOM</small></div>
+    </section>
+
+    <section class="control-panel panel">
+      <div class="section-title"><div><span class="step">01</span><h2>Choose a scenario</h2></div><span class="muted">FICTIONAL DATASET</span></div>
+      <div class="scenario-row">
+        <label class="select-wrap"><span>SCENARIO</span>
+          <select id="scenario">
+            <option value="growth">Company reports stronger fictional growth</option>
+            <option value="costs">Company faces rising operating costs</option>
+            <option value="mixed">Mixed signals: growth and uncertainty</option>
+          </select>
+        </label>
+        <label class="select-wrap"><span>DEBATE DEPTH</span>
+          <select id="depth">
+            <option value="quick">Quick · 2 rounds</option>
+            <option value="deep" selected>Detailed · 3 rounds</option>
+          </select>
+        </label>
+        <button id="startBtn" class="primary-btn">Run debate <span>↗</span></button>
+      </div>
+      <p class="hint">All company names, figures, and outcomes are invented for learning. This is not financial advice.</p>
+    </section>
+
+    <section class="overview-grid">
+      <article class="agent-card bull panel">
+        <div class="agent-head"><div class="avatar">A1</div><div><p class="eyebrow">AGENT 01</p><h3>Optimist</h3></div><span class="stance positive">POSITIVE CASE</span></div>
+        <p class="agent-desc">Looks for supportive evidence, possible opportunities, and assumptions that could explain improvement.</p>
+        <div class="agent-stat"><span>Reasoning focus</span><b>Growth · Resilience · Potential</b></div>
+      </article>
+      <article class="agent-card bear panel">
+        <div class="agent-head"><div class="avatar">A2</div><div><p class="eyebrow">AGENT 02</p><h3>Skeptic</h3></div><span class="stance caution">CAUTIONARY CASE</span></div>
+        <p class="agent-desc">Challenges assumptions, identifies uncertainty, and looks for risks or missing information.</p>
+        <div class="agent-stat"><span>Reasoning focus</span><b>Risk · Evidence · Uncertainty</b></div>
+      </article>
+      <article class="agent-card judge panel">
+        <div class="agent-head"><div class="avatar">J</div><div><p class="eyebrow">MODERATOR</p><h3>Neutral Judge</h3></div><span class="stance neutral">INDEPENDENT</span></div>
+        <p class="agent-desc">Scores evidence quality, logical consistency, counterarguments, and remaining uncertainty.</p>
+        <div class="agent-stat"><span>Evaluation focus</span><b>Evidence · Balance · Clarity</b></div>
+      </article>
+    </section>
+
+    <section class="panel debate-panel">
+      <div class="section-title"><div><span class="step">02</span><h2>Debate transcript</h2></div><span id="runState" class="muted">WAITING FOR SCENARIO</span></div>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">⌁</div><h3>The room is ready</h3><p>Choose a fictional scenario above and run the debate to see both sides build and challenge their arguments.</p></div>
+      <div id="transcript" class="transcript" aria-live="polite"></div>
+    </section>
+
+    <section class="panel verdict-panel">
+      <div class="section-title"><div><span class="step">03</span><h2>Judge's evaluation</h2></div><span class="muted">REASONING SCORECARD</span></div>
+      <div id="verdictEmpty" class="verdict-empty">The judge's assessment will appear after the debate.</div>
+      <div id="verdict" hidden>
+        <div class="verdict-summary"><div><p class="eyebrow">OVERALL ASSESSMENT</p><h3 id="verdictTitle">Balanced evidence</h3><p id="verdictText"></p></div><div class="score-ring"><strong id="scoreValue">--</strong><small>/ 100</small></div></div>
+        <div id="scoreRows" class="score-rows"></div>
+        <div class="caveat"><b>What remains unknown</b><p id="unknownText"></p></div>
+      </div>
+    </section>
+
+    <footer><span>SIGNAL ROOM · LEARNING PROJECT</span><span>Fictional scenarios only · No trades · No recommendations</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
